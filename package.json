@@ -7,7 +7,7 @@
   "repository": "git://github.com/payapps/ui.git",
   "main": "dist/index.js",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com"
   },
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
@@ -32,11 +32,11 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
-    "@storybook/addon-actions": "^6.1.19",
-    "@storybook/addon-essentials": "^6.1.19",
-    "@storybook/addon-links": "^6.1.19",
-    "@storybook/react": "^6.1.19",
+    "@babel/core": "^7.13.8",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/react": "^6.1.21",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
