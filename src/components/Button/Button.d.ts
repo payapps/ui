@@ -1,7 +1,7 @@
 import { AriaAttributes, DOMAttributes } from "react";
 
 export interface ButtonProps {
-  children: any;
+  children?: any;
   type: 'primary' | 'tertiary' | 'secondary';
   loading?: boolean;
   disabled?: boolean;

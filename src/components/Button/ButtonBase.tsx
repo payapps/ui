@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ButtonBase = styled.button<{ block?: boolean, status?: string | null }>`
+export const ButtonBase = styled.button<{ block?: boolean, status?: string | null, success?: boolean | null }>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};
     color: ${props => props.theme.colors.lightGrey};
@@ -10,14 +10,14 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
 
   display: inline-block;
   position: relative;
-  height: ${props => props.theme.size(44)};
-  padding: ${props => props.theme.size(12, 40, 12)};
+  font-size: 18px;
+  height: 44px;
+  padding: 12px 40px 12px;
   font-weight: 700;
-  font-size: ${props => props.theme.size(18)};
-  border-radius: ${props => props.theme.size(22)};
+  border-radius: 22px;
   text-transform: capitalize;
   cursor: pointer;
-  transition: background-color 0.125s;
+  transition: background-color 0.125s, color 0.125s;
 
   ${props => {
     const statusBGColor = props.status === 'loading' ? 'lightBlue' : 'green'
@@ -43,14 +43,14 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
       `
         width: 100%;
         & + & {
-          margin-top: ${props.theme.size(16)};
+          margin-top: 16px;
         }
       `
     ) : (
       `
         width: auto;
         & + & {
-          margin-left: ${props.theme.size(16)};
+          margin-left: 16px;
         }
       ` 
     )
@@ -67,7 +67,7 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
     top: 0;
     left: 0;
     z-index: 0;
-    transition: opacity $bttnColorTransitionTime;
+    transition: opacity 0.35s;
     border-radius: inherit;
     mix-blend-mode: multiply;
   }
