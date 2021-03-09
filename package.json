@@ -6,9 +6,6 @@
   "license": "MIT",
   "repository": "git://github.com/payapps/ui.git",
   "main": "dist/index.js",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "engines": {
