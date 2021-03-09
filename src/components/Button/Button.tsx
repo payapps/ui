@@ -32,7 +32,7 @@ export const Button = forwardRef((props: ButtonProps, ref: any) => {
   const Component = ComponentTypes[type]
   const isLoading = loading && !disabled
   const opacity = isLoading ? 0 : 1
-  const status = isLoading && success ? 'success' : isLoading ? 'loading' : null
+  const status = success ? 'success' : isLoading ? 'loading' : null
   const ButtonRequestStatus = status === 'success' ? Tick : LoadingSpinner
 
   return (
