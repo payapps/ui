@@ -12,9 +12,9 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
   position: relative;
   font-size: 18px;
   height: 44px;
-  padding: 12px 40px 12px;
+  padding: 12px 40px 11px;
   font-weight: 700;
-  border-radius: 22px;
+  border-radius: 9999px;
   text-transform: capitalize;
   cursor: pointer;
   transition: background-color 0.125s, color 0.125s;
@@ -44,6 +44,7 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
         width: 100%;
         & + & {
           margin-top: 16px;
+          margin-left: 0;
         }
       `
     ) : (

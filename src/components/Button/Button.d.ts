@@ -12,6 +12,7 @@ export interface ButtonProps {
   htmlType?: 'button' | 'reset' | 'submit';
   value?: string;
   success?: boolean;
+  className?: string;
 }
 
 export interface SubmitButtonProps extends ButtonProps {
