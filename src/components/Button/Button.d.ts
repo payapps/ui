@@ -3,6 +3,7 @@ import { AriaAttributes, DOMAttributes } from "react";
 export interface ButtonProps {
   children?: any;
   type: 'primary' | 'tertiary' | 'secondary';
+  size?: 'lg' | 'md' | 'sm';
   loading?: boolean;
   disabled?: boolean;
   block?: boolean;

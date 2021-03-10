@@ -1,6 +1,29 @@
 import styled from 'styled-components'
 
-export const ButtonBase = styled.button<{ block?: boolean, status?: string | null, success?: boolean | null }>`
+const sizeMap = {
+  lg: {
+    fontSize: '22px',
+    height: '64px',
+    padding: '19px 50px 19px',
+  },
+  md: {
+    fontSize: '18px',
+    height: '44px',
+    padding: '12px 40px 11px'
+  },
+  sm: {
+    fontSize: '15px',
+    height: '32px',
+    padding: '7px 35px 7px',
+  }
+}
+
+export const ButtonBase = styled.button<{
+  size: 'lg' | 'md' | 'sm';
+  block?: boolean;
+  status?: string | null;
+  success?: boolean | null;
+}>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};
     color: ${props => props.theme.colors.lightGrey};
@@ -10,9 +33,9 @@ export const ButtonBase = styled.button<{ block?: boolean, status?: string | nul
 
   display: inline-block;
   position: relative;
-  font-size: 18px;
-  height: 44px;
-  padding: 12px 40px 11px;
+  font-size: ${props => sizeMap[props.size].fontSize};
+  height: ${props => sizeMap[props.size].height};
+  padding: ${props => sizeMap[props.size].padding};
   font-weight: 700;
   border-radius: 9999px;
   text-transform: capitalize;

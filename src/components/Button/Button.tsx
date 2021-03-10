@@ -15,6 +15,7 @@ const Wrapper = styled.div`position: relative;`
 export const Button = forwardRef((props: ButtonProps, ref: any) => {
   const {
     type = 'primary',
+    size = 'md',
     loading = false,
     disabled = false,
     block = false,
@@ -37,7 +38,15 @@ export const Button = forwardRef((props: ButtonProps, ref: any) => {
   const ButtonRequestStatus = status === 'success' ? Tick : LoadingSpinner
 
   return (
-    <Component {...rest} disabled={disabled} status={status} ref={ref} block={block} className={className}>
+    <Component
+      {...rest}
+      size={size}
+      disabled={disabled}
+      status={status}
+      ref={ref}
+      block={block}
+      className={className}
+    >
       <Wrapper>
         <TextContent style={{ opacity }}>{children}</TextContent>
         {status && <ButtonRequestStatus />}

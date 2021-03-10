@@ -15,9 +15,9 @@ const App = () => {
   return (
       <ThemeProvider>
         <div style={{ padding: '2rem' }}>
-          <Button onClick={handleClick}>Primary</Button>
-          <Button type="secondary" loading={loading} success={success} >Secondary</Button>
-          <Button type="tertiary" loading={loading}>Tertiary</Button>
+          <Button onClick={handleClick} size="lg">Primary</Button>
+          <Button type="secondary" loading={loading} success={success} size="md">Secondary</Button>
+          <Button type="tertiary" loading={loading} size="sm">Tertiary</Button>
         </div>
       </ThemeProvider>
     )
