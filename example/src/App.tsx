@@ -16,9 +16,10 @@ const App = () => {
       <ThemeProvider>
         <div style={{ padding: '2rem' }}>
           <Button onClick={handleClick} size="lg">Primary</Button>
-          <Button type="secondary" loading={loading} success={success} size="md">Secondary</Button>
-          <Button type="tertiary" loading={loading} size="sm">Tertiary</Button>
+          <Button type="secondary" loading={loading} success={success} size="lg">Secondary</Button>
+          <Button type="tertiary" loading={loading} size="lg">Tertiary</Button>
         </div>
+        <p>Some text here and a <Button type="link" underline>some text</Button></p>
       </ThemeProvider>
     )
 }

@@ -2,7 +2,7 @@ import { AriaAttributes, DOMAttributes } from "react";
 
 export interface ButtonProps {
   children?: any;
-  type: 'primary' | 'tertiary' | 'secondary';
+  type?: 'primary' | 'tertiary' | 'secondary' | 'link';
   size?: 'lg' | 'md' | 'sm';
   loading?: boolean;
   disabled?: boolean;
@@ -14,6 +14,8 @@ export interface ButtonProps {
   value?: string;
   success?: boolean;
   className?: string;
+  underline?: boolean;
+  fontSize?: string;
 }
 
 export interface SubmitButtonProps extends ButtonProps {

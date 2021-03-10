@@ -23,6 +23,8 @@ export const ButtonBase = styled.button<{
   block?: boolean;
   status?: string | null;
   success?: boolean | null;
+  underline?: boolean | null;
+  fontSize?: string | null;
 }>`
   &[disabled] {
     background-color: ${props => props.theme.colors.xtraLightGrey};

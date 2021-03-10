@@ -5,6 +5,7 @@ import { ButtonProps } from './Button.d'
 import { Primary } from './Primary'
 import { Secondary } from './Secondary'
 import { Tertiary } from './Tertiary'
+import { Link } from './Link'
 
 const TextContent = styled.div`
   transition: opacity 0.125s;
@@ -22,12 +23,16 @@ export const Button = forwardRef((props: ButtonProps, ref: any) => {
     success,
     children,
     className = '',
+    underline = false,
+    fontSize = 'inherit',
     ...rest
   } = props
+
   const ComponentTypes = {
     primary: Primary,
     secondary: Secondary,
-    tertiary: Tertiary
+    tertiary: Tertiary,
+    link: Link
   }
 
   const Component = ComponentTypes[type]
@@ -46,11 +51,20 @@ export const Button = forwardRef((props: ButtonProps, ref: any) => {
       ref={ref}
       block={block}
       className={className}
+      underline={underline}
+      fontSize={fontSize}
     >
-      <Wrapper>
-        <TextContent style={{ opacity }}>{children}</TextContent>
-        {status && <ButtonRequestStatus />}
-      </Wrapper>
+      { type === 'link' ? (
+          <span className='paui-button--link'>
+            {children}
+          </span>
+        ) : (
+          <Wrapper>
+            <TextContent style={{ opacity }}>{children}</TextContent>
+            {status && <ButtonRequestStatus />}
+          </Wrapper>
+        ) 
+      }
     </Component>
   )
 })
