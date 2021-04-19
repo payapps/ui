@@ -1,8 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Button } from '@chakra-ui/react'
 
-const Wrapper = styled.div`
-  border: solid hotpink 2px;
-`
+export const Testa = () => <Button colorScheme="blue">Button</Button>
 
-export const Testa = () => <Wrapper>TESTA</Wrapper>

@@ -35,7 +35,7 @@ export const Button = forwardRef((props: ButtonProps, ref: any) => {
     link: Link
   }
 
-  const Component = ComponentTypes[type]
+  const Component = ComponentTypes[type] || ComponentTypes.primary
   const isLoading = loading && !disabled
   const successPending = success !== undefined
   const opacity = isLoading ? 0 : (successPending && success ? 0 : 1)
