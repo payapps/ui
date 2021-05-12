@@ -7,7 +7,7 @@ export interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   block?: boolean;
-  autofocus?: boolean;
+  autoFocus?: boolean;
   form?: string;
   name?: string;
   htmlType?: 'button' | 'reset' | 'submit';
