@@ -15,10 +15,11 @@ import { faExclamationTriangle, faExclamationCircle } from '@fortawesome/free-so
 
 interface Props {
   heading?: string | null;
+  width?: string | number;
   children: any;
 }
 
-export const WarningPopover = ({ heading = null, children }: Props) => (
+export const WarningPopover = ({ heading = null, width = '300px', children }: Props) => (
   <Popover closeOnBlur={false} placement="bottom">
     {({ onClose }) => (
       <Fragment>
@@ -28,7 +29,7 @@ export const WarningPopover = ({ heading = null, children }: Props) => (
           </Box>
         </PopoverTrigger >
         <Portal>
-            <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" backgroundColor='#FEF7F8' borderColor="#FF354E" borderRadius="2px" p="10px 8px">
+            <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FEF7F8' borderColor="#FF354E" borderRadius="2px" p="10px 8px">
             <PopoverArrow bg='#FEF7F8' />
             <PopoverBody>
               <Grid templateColumns="auto 1fr" gap="8px">

@@ -23,7 +23,7 @@ const Template = (args) => <WarningPopover {...args} />;
 export const Warning = Template.bind({});
 Warning.args = {
   heading: 'A previously certifed AFP impacts the following amounts',
-  children: <WarningInner />
+  children: <WarningInner />,
 };
 
 export default config
