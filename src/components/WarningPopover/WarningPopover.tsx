@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
   Popover,
   PopoverTrigger,
@@ -21,7 +21,7 @@ interface Props {
 export const WarningPopover = ({ heading = null, children }: Props) => (
   <Popover closeOnBlur={false} placement="bottom">
     {({ onClose }) => (
-      <>
+      <Fragment>
         <PopoverTrigger>
           <FontAwesomeIcon color="#FF354E" cursor="pointer" icon={faExclamationTriangle} />
         </PopoverTrigger>
@@ -42,7 +42,7 @@ export const WarningPopover = ({ heading = null, children }: Props) => (
             </PopoverBody>
           </PopoverContent>
         </Portal>
-      </>
+      </Fragment>
     )}
   </Popover>
 )

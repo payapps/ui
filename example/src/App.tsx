@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ThemeProvider, Button } from 'ui'
+import { ThemeProvider, Button, WarningPopover, InfoPopover } from 'ui'
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -20,6 +20,13 @@ const App = () => {
           <Button type="tertiary" loading={loading} size="lg">Tertiary</Button>
         </div>
         <p>Some text here and a <Button type="link" underline>some text</Button></p>
+        <WarningPopover heading="let this be a warning">
+          <ul>
+            <li>listing warnings...</li>
+            <li>go!</li>
+          </ul>
+        </WarningPopover>
+        <InfoPopover>Here's some info for you</InfoPopover>
       </ThemeProvider>
     )
 }

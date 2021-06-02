@@ -6,12 +6,11 @@ import {
   PopoverBody,
   PopoverArrow,
   Grid,
-  GridItem,
   Box,
   Portal,
 } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExclamationTriangle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
   heading?: string | null;
