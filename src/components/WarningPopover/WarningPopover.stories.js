@@ -1,6 +1,6 @@
 import React from 'react';
 import { WarningPopover } from './WarningPopover'
-import { List, ListItem, ListIcon, OrderedList, UnorderedList } from "@chakra-ui/react"
+import { ListItem, List } from "@chakra-ui/react"
 
 const config = {
   title: 'Payapps/Popovers',
