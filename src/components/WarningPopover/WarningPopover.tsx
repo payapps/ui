@@ -23,11 +23,13 @@ export const WarningPopover = ({ heading = null, children }: Props) => (
     {({ onClose }) => (
       <Fragment>
         <PopoverTrigger>
-          <FontAwesomeIcon color="#FF354E" cursor="pointer" icon={faExclamationTriangle} />
-        </PopoverTrigger>
+          <Box display="inline">
+            <FontAwesomeIcon color="#FF354E" cursor="pointer" icon={faExclamationTriangle} />
+          </Box>
+        </PopoverTrigger >
         <Portal>
             <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" backgroundColor='#FEF7F8' borderColor="#FF354E" borderRadius="2px" p="10px 8px">
-            <PopoverArrow />
+            <PopoverArrow bg='#FEF7F8' />
             <PopoverBody>
               <Grid templateColumns="auto 1fr" gap="8px">
                 <Box><FontAwesomeIcon  color="#FF354E" icon={faExclamationCircle} /></Box>

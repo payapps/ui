@@ -22,9 +22,10 @@ export const InfoPopover = ({ heading = null, children = null }: Props) => {
   return (
     <Popover closeOnBlur={false} placement="bottom" trigger="hover">
       <PopoverTrigger>
-        <FontAwesomeIcon color="#CCC" cursor="pointer" icon={faExclamationCircle} />
+        <Box display="inline">
+          <FontAwesomeIcon color="#CCC" cursor="pointer" icon={faExclamationCircle} />
+        </Box>
       </PopoverTrigger>
-      <Portal>
           <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" backgroundColor='#FFFFFF' borderColor="#CCC" borderRadius="2px" p="10px 8px">
           <PopoverArrow />
           <PopoverBody>
@@ -37,7 +38,6 @@ export const InfoPopover = ({ heading = null, children = null }: Props) => {
             </Grid>
           </PopoverBody>
         </PopoverContent>
-      </Portal>
     </Popover>
   )
 }
