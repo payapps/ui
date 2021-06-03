@@ -28,9 +28,9 @@ export const InfoPopover = ({ heading = null, width="400px", children = null }: 
       </PopoverTrigger>
           <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FFFFFF' borderColor="#CCC" borderRadius="2px" p="10px 8px">
           <PopoverArrow />
-          <PopoverBody>
+          <PopoverBody textAlign="left">
             <Grid templateColumns="auto 1fr" gap="8px">
-              <Box><FontAwesomeIcon  color="#CCC" icon={faExclamationCircle} /></Box>
+              <Box fontSize="16px"><FontAwesomeIcon  color="#CCC" icon={faExclamationCircle} /></Box>
               <Box>
                 <Box as="header" fontSize="14px" lineHeight="1.7">{heading}</Box>
                 <Box fontSize={fz}>{children}</Box>

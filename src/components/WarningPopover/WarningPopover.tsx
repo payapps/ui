@@ -31,9 +31,9 @@ export const WarningPopover = ({ heading = null, width = '300px', children }: Pr
         <Portal>
             <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FEF7F8' borderColor="#FF354E" borderRadius="2px" p="10px 8px">
             <PopoverArrow bg='#FEF7F8' />
-            <PopoverBody>
+            <PopoverBody textAlign="left">
               <Grid templateColumns="auto 1fr" gap="8px">
-                <Box><FontAwesomeIcon  color="#FF354E" icon={faExclamationCircle} /></Box>
+                <Box fontSize="16px"><FontAwesomeIcon  color="#FF354E" icon={faExclamationCircle} /></Box>
                 <Box>
                   <Box as="header" fontSize="14px" lineHeight="1.7" mb="22px">{heading}</Box>
                   <Box fontSize="12px">{children}</Box>
