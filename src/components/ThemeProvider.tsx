@@ -8,12 +8,27 @@ interface Props {
   children: any
 }
 
-export const ThemeProvider = ({ theme = {}, children }: Props) => {
-  const composedTheme = { ...theme, ...defaultTheme }
-  const extendedTheme = extendTheme(composedTheme)
+export const ThemeProvider = ({ children }: Props) => {
+  // Legacy theme override to prevent Chakra's defaults from interfering with existing bootstrap, material and custom styles
+  // Removing this will give me great joy.
+  const legacyTheme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          bg: "#F1F1F1",
+          fontFamily: "'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif",
+        },
+        p: {
+          marginBottom: '10px',
+        }
+      },
+    },
+    // this will get a refactor to conform with the Styled System Theme Spec
+    ...defaultTheme,
+  })
   return (
-    <ChakraProvider theme={extendedTheme}>
-      <StyledThemeProvider theme={composedTheme}>
+    <ChakraProvider theme={legacyTheme}>
+      <StyledThemeProvider theme={legacyTheme}>
         {children}
       </StyledThemeProvider>
     </ChakraProvider>
