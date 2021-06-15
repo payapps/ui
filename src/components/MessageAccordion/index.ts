@@ -1,0 +1,1 @@
+export { MessageAccordion } from './MessageAccordion'
