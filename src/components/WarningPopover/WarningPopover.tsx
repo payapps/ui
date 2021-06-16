@@ -25,20 +25,20 @@ export const WarningPopover = ({ heading = null, width = '300px', children }: Pr
       <Fragment>
         <PopoverTrigger>
           <Box display="inline">
-            <FontAwesomeIcon color="#FF354E" cursor="pointer" icon={faExclamationTriangle} />
+            <FontAwesomeIcon color="#FFBF00" cursor="pointer" icon={faExclamationTriangle} />
           </Box>
         </PopoverTrigger >
         <Portal>
-            <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FEF7F8' borderColor="#FF354E" borderRadius="2px" p="10px 8px">
-            <PopoverArrow bg='#FEF7F8' />
+            <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FFF9E6' borderColor="#FFBF00" borderRadius="2px" p="10px 8px">
+            <PopoverArrow bg='#FFF9E6' />
             <PopoverBody textAlign="left">
               <Grid templateColumns="auto 1fr" gap="8px">
-                <Box fontSize="16px"><FontAwesomeIcon  color="#FF354E" icon={faExclamationCircle} /></Box>
+                <Box fontSize="16px"><FontAwesomeIcon  color="#FFBF00" icon={faExclamationCircle} /></Box>
                 <Box>
                   <Box as="header" fontSize="14px" lineHeight="1.7" mb="22px">{heading}</Box>
                   <Box fontSize="12px">{children}</Box>
                 </Box>
-                <GridItem colSpan={2} fontSize="14px" color="#FF354E" textAlign="center" mt="5px">
+                <GridItem colSpan={2} fontSize="14px" color="#FFBF00" textAlign="center" mt="5px">
                   <strong onClick={onClose} style={{ cursor: 'pointer', lineHeight: '2.28' }}>Thanks I got it</strong>
                 </GridItem>
               </Grid>
