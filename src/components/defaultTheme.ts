@@ -16,7 +16,14 @@ export const defaultTheme: DefaultTheme = {
     pending: '#ff9500',
     green: '#39B683',
     red: '#FF354E',
-
+    gold: {
+      900: '#FFBF00',
+      400: '#FFF9E6',
+    },
+    goldAlpha: {
+      400: 'rgba(255, 191, 0, 0.4)',
+      100: 'rgba(255, 191, 0, 0.1)',
+    },
     regGrey: '#6F8593',
     medGrey: '#8EA3B0',
     lightGrey: '#B6C5CE',

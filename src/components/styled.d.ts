@@ -22,6 +22,14 @@ declare module 'styled-components' {
       infoBlue: string
       toasterGreen: string
       errorRed: string
+      gold: {
+        900: string
+        400: string
+      }
+      goldAlpha: {
+        400: string
+        100: string
+      }
     }
     size: (...val: any[]) => string
   }
