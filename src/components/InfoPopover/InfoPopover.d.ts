@@ -4,4 +4,5 @@ export interface Props {
   width?: string | number;
   warning?: boolean;
   iconType?: 'outline' | 'solid';
+  placement?: any;
 }

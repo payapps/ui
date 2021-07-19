@@ -25,13 +25,14 @@ export const InfoPopover = ({
   width="400px",
   children = null,
   warning = false,
-  iconType = 'solid'
+  iconType = 'solid',
+  placement = 'bottom',
 }: Props) => {
   const { colors } = useTheme()
   const fz = heading === null ? '14px' : '12px'
   const color = warning ? colors.gold[900] : '#CCC'
   return (
-    <Popover closeOnBlur={false} placement="bottom" trigger="hover">
+    <Popover closeOnBlur={false} placement={placement} trigger="hover">
       <PopoverTrigger>
         <Box display="inline">
           <Icon iconType={iconType} color={color} />
