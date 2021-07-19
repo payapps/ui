@@ -37,7 +37,7 @@ export const InfoPopover = ({
           <Icon iconType={iconType} color={color} />
         </Box>
       </PopoverTrigger>
-      <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FFFFFF' borderColor="#CCC" borderRadius="2px" p="10px 8px">
+      <PopoverContent boxShadow="0px 8px 16px rgba(0, 0, 0, 0.08)" w={width} backgroundColor='#FFFFFF' border="solid #CCC 1px" borderRadius="2px" p="10px 8px" zIndex="100">
         <PopoverArrow />
         <PopoverBody textAlign="left">
           <Grid templateColumns="auto 1fr" gap="8px">
