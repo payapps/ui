@@ -25,7 +25,7 @@ export const InfoPopover = ({
   width="400px",
   children = null,
   warning = false,
-  iconType = 'outline'
+  iconType = 'solid'
 }: Props) => {
   const { colors } = useTheme()
   const fz = heading === null ? '14px' : '12px'
