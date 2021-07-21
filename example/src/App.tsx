@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ThemeProvider, Button, WarningPopover, InfoPopover } from 'ui'
+import { ThemeProvider, Button, WarningPopover, InfoPopover, Checkbox } from 'ui'
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -27,6 +27,7 @@ const App = () => {
           </ul>
         </WarningPopover>
         <InfoPopover>Here's some info for you</InfoPopover>
+        <Checkbox defaultIsChecked>Checkbox</Checkbox>
       </ThemeProvider>
     )
 }
