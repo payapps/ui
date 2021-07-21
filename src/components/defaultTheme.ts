@@ -7,14 +7,16 @@ export const defaultTheme: DefaultTheme = {
   colors: {
     hoveredBg: 'rgba(0, 0, 0, 0.2)',
     activeBg: 'rgba(0, 0, 0, 0.1)',
-
     white: '#FFF',
     darkBlue: '#1F2533',
     blue: '#0D44AA',
     lightBlue: '#007AFF',
     grey: '#5A6E7A',
     pending: '#ff9500',
-    green: '#39B683',
+    green: {
+      900: '#39B683',
+      100: '#E9F5F0',
+    },
     red: '#FF354E',
     gold: {
       900: '#FFBF00',
@@ -31,7 +33,10 @@ export const defaultTheme: DefaultTheme = {
     tableBG: '#FAFAFA',
     infoBlue: '#F0F9FF',
     toasterGreen: '#E9F5F0',
-    errorRed: '#FEF7F8'
+    errorRed: {
+      900: '#FF354E',
+      100: '#FEF7F8',
+    }
   },
   size: (...value: any) =>
     value.reduce((a: string, i: number) => `${a} ${i / baseFont}rem`, '')

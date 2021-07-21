@@ -1,35 +1,31 @@
 import 'styled-components'
 
+type ColorIndex = 100 | 400 | 900
+type FromColorIndex = { [key in ColorIndex]?: string} | string
 declare module 'styled-components' {
   export interface DefaultTheme {
     baseFontSize: string
     colors: {
-      hoveredBg: string
-      activeBg: string
-      white: string
-      darkBlue: string
-      blue: string
-      lightBlue: string
-      grey: string
-      pending: string
-      green: string
-      red: string
-      regGrey: string
-      medGrey: string
-      lightGrey: string
-      xtraLightGrey: string
-      tableBG: string
-      infoBlue: string
-      toasterGreen: string
-      errorRed: string
-      gold: {
-        900: string
-        400: string
-      }
-      goldAlpha: {
-        400: string
-        100: string
-      }
+      hoveredBg: FromColorIndex
+      activeBg: FromColorIndex
+      white: FromColorIndex
+      darkBlue: FromColorIndex
+      blue: FromColorIndex
+      lightBlue: FromColorIndex
+      grey: FromColorIndex
+      pending: FromColorIndex
+      green: FromColorIndex
+      red: FromColorIndex
+      regGrey: FromColorIndex
+      medGrey: FromColorIndex
+      lightGrey: FromColorIndex
+      xtraLightGrey: FromColorIndex
+      tableBG: FromColorIndex
+      infoBlue: FromColorIndex
+      toasterGreen: FromColorIndex
+      errorRed: FromColorIndex
+      gold: FromColorIndex
+      goldAlpha: FromColorIndex
     }
     size: (...val: any[]) => string
   }

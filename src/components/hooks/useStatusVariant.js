@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useTheme } from '@chakra-ui/react'
 import { faInfoCircle, faExclamationTriangle, faExclamationCircle, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
-export const useMessageVariant = messageVariant => {
+export const useStatusVariant = initialVariant => {
   const { colors } = useTheme()
+  const [variant, setVariant] = useState(initialVariant)
   const variantMap = {
     warning: {
       icon: faExclamationCircle,
@@ -13,14 +14,14 @@ export const useMessageVariant = messageVariant => {
     },
     error: {
       icon: faExclamationTriangle,
-      borderColor: colors.gold['900'],
-      backgroundColor: colors.goldAlpha['100'],
+      borderColor: colors.errorRed['900'],
+      backgroundColor: colors.errorRed['100'],
       color: colors.darkBlue,
     },
     success: {
       icon: faCheckCircle,
-      borderColor: colors.gold['900'],
-      backgroundColor: colors.goldAlpha['100'],
+      borderColor: colors.green['900'],
+      backgroundColor: colors.green['100'],
       color: colors.darkBlue,
     },
     info: {
@@ -30,6 +31,5 @@ export const useMessageVariant = messageVariant => {
       color: colors.darkBlue,
     },
   }
-  const [variant, setVariant] = useState(variantMap[messageVariant])
-  return [variant, setVariant]
+  return [variantMap[variant], setVariant]
 }

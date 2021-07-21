@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Accordion,
   AccordionItem,
@@ -6,10 +6,9 @@ import {
   AccordionPanel,
   AccordionIcon,
   Grid,
-  GridItem,
   Box,
 } from "@chakra-ui/react"
-import { useMessageVariant } from './useMessageVariant'
+import { useStatusVariant } from '../hooks/useStatusVariant'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
@@ -19,8 +18,10 @@ interface Props {
 }
 
 export const MessageAccordion = ({ message, type = 'warning', children }: Props) => {
-  const [variant] = useMessageVariant(type)
+  const [variant] = useStatusVariant(type)
   const { icon, borderColor, backgroundColor, color } = variant
+  const TRANSITION_TIMING = '0.25s'
+  const TRANSITION_PROPS = `background-color ${TRANSITION_TIMING}, border-color ${TRANSITION_TIMING}`
   return (
     <Accordion allowToggle >
       <AccordionItem
@@ -28,10 +29,11 @@ export const MessageAccordion = ({ message, type = 'warning', children }: Props)
         color={color}
         fontSize={14}
         backgroundColor={backgroundColor}
+        transition={TRANSITION_PROPS}
       >
         <AccordionButton fontSize={14} style={{ boxShadow: 'none' }} _hover={backgroundColor}>
           <Grid
-            gridTemplateColumns='auto 1fr max-content'
+            gridTemplateColumns='18px 1fr max-content'
             gridGap="16px"
             w="100%"
             textAlign='left'
