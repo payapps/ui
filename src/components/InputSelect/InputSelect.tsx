@@ -1,34 +1,44 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, SyntheticEvent } from 'react'
+import { PayappsUI } from '../../typings';
+import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
+import { InputArrowDown } from './InputArrowDown'
+import  * as Styles from './styles'
 
-export const InputSelect = ({ rates, rate, children }) => {
-  const [taxRates, setTaxRates] = useState(rate)
-  const [ratesArray, setRatesArray] = useState(rates)
-  const [dropDownData, setDropDownData] = useState(rates)
+export const InputSelect = <T extends {}> ({
+  options,
+  value = '',
+  maxDisplayLength = 5,
+  ...rest
+}: PayappsUI.InputSelectProps<T>) => {
+  const [inputValue, setInputValue] = useState(`${value}`)
+  const [optionsArray, setOptionsArray] = useState(options)
+  const [dropDownOptions, setDropDownOptions] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const dropDownRef = useRef(null)
 
-  const isValidInput = value => value == null || isNaN(parseInt(value))
-
-  const filterRate = value => {
-    const filtered = dropDownData.filter(rate => rate.includes(`${value}`.toLowerCase()))
-    return isValidInput(value) || filtered.length === 0 ? ratesArray : filtered
+  const filterOptions = (value: string) => {
+    const filtered = dropDownOptions.filter(option => option.includes(`${value}`.toLowerCase()))
+    return filtered.length === 0 ? optionsArray : filtered
   }
 
-  const addUniqueRate = (rate) => {
-    return [...new Set([...ratesArray, rate])]
+  const removeOldestCustomOption = (optionsArr) => {
+    return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr
   }
 
-  const handleUniqueRateAddition = (value) => {
-    const newRateValue = value.charAt(value.length - 1) === '%' ? value : `${value}%`
-    setRatesArray(addUniqueRate(newRateValue))
+  const addUniqueOption = (option: string) => {
+    return removeOldestCustomOption([...new Set([...optionsArray, option])])
   }
 
-  const handleChange = ({ target }) => {
-    const { value } = target
+  const handleUniqueOptionAddition = (value: string) => {
+    setOptionsArray(addUniqueOption(value))
+    setDropDownOptions(optionsArray)
+  }
+
+  const handleChange = ({ value }) => {
     setShowDropdown(true)
-    setDropDownData(filterRate(value))
-    setTaxRates(value)
+    setDropDownOptions(filterOptions(value))
+    setInputValue(value)
   }
 
   const handleBlur = ({ target }) => {
@@ -38,32 +48,52 @@ export const InputSelect = ({ rates, rate, children }) => {
 
   const closeDropDown = () => {
     setShowDropdown(false)
-    handleUniqueRateAddition(taxRates)
+    handleUniqueOptionAddition(inputValue)
+  }
+
+  const handleArrowClick = (e: SyntheticEvent) => {
+    e.stopPropagation()
+    setShowDropdown(!showDropdown)
+    handleUniqueOptionAddition(inputValue)
   }
 
   useClickOutside(dropDownRef, closeDropDown);
   useEscapeKey(closeDropDown);
 
-  const handleClick = ({ target }) => {
-    setTaxRates(target.getAttribute('data-rate'))
+  const handleClick = (option: string) => {
+    setInputValue(option)
     setShowDropdown(false)
   }
 
   return (
-    <div style={{ border: 'solid red 1px' }}>
-      <input
+    <Styles.InputSelectWrapper>
+      <Styles.NumberFormatWrapper
         type="text"
-        value={taxRates}
-        onChange={handleChange}
+        value={inputValue}
+        onValueChange={handleChange}
         onBlur={handleBlur}
+        {...rest}
       />
+      <Styles.DropdownArrowWrapper onClick={handleArrowClick}>
+        <InputArrowDown />
+      </Styles.DropdownArrowWrapper>
       {showDropdown &&
-        <ul ref={dropDownRef}>
-          {dropDownData.map((rate, index) => (
-            <li onClick={handleClick} data-rate={rate} key={index}>{rate}</li>
+        <Styles.DropdownWrapper ref={dropDownRef}>
+          {dropDownOptions.map((option, index) => (
+            <Styles.DropdownOption
+              data-option={option}
+              key={index}
+            >
+              <NumberFormat
+                displayType='text'
+                value={option}
+                onClick={() => handleClick(option)}
+                {...rest}
+              />
+            </Styles.DropdownOption>
           ))}
-        </ul>
+        </Styles.DropdownWrapper>
       }
-    </div>
+    </Styles.InputSelectWrapper>
   )
 }

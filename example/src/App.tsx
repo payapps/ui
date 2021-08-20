@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ThemeProvider, Button, WarningPopover, InfoPopover, Checkbox } from 'ui'
+import { ThemeProvider, Button, WarningPopover, InfoPopover, Checkbox, InputSelect } from 'ui'
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -18,16 +18,21 @@ const App = () => {
           <Button onClick={handleClick} size="lg">Primary</Button>
           <Button type="secondary" loading={loading} success={success} size="lg">Secondary</Button>
           <Button type="tertiary" loading={loading} size="lg">Tertiary</Button>
+          <p>Some text here and a <Button type="link" underline>some text</Button></p>
+          <WarningPopover heading="let this be a warning">
+            <ul>
+              <li>listing warnings...</li>
+              <li>go!</li>
+            </ul>
+          </WarningPopover>
+          <InfoPopover>Here's some info for you</InfoPopover>
+          <Checkbox defaultIsChecked>Checkbox</Checkbox>
+          <InputSelect
+            options={['20', '5', '0']}
+            value="12"
+            suffix="%"
+          />
         </div>
-        <p>Some text here and a <Button type="link" underline>some text</Button></p>
-        <WarningPopover heading="let this be a warning">
-          <ul>
-            <li>listing warnings...</li>
-            <li>go!</li>
-          </ul>
-        </WarningPopover>
-        <InfoPopover>Here's some info for you</InfoPopover>
-        <Checkbox defaultIsChecked>Checkbox</Checkbox>
       </ThemeProvider>
     )
 }

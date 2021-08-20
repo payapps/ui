@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }: Props) => {
     styles: {
       global: {
         body: {
-          bg: "#F1F1F1",
+          bg: "#FFF",
           fontFamily: "'Roboto', 'Segoe UI', Helvetica, Arial, sans-serif",
         },
         p: {
