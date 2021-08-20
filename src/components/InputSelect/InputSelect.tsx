@@ -3,7 +3,7 @@ import { PayappsUI } from '../../typings';
 import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
 import { InputArrowDown } from './InputArrowDown'
-import * as Styles from './styles'
+import { DropdownOption, DropdownArrowWrapper, DropdownWrapper, InputSelectWrapper, NumberFormatWrapper } from './styles'
 
 type DropDownOptionsProps<T> =
   & PayappsUI.InputSelectProps<T>
@@ -75,9 +75,9 @@ export const InputSelect = <T extends {}> ({
       const filtered = options.filter((option: string) => option.includes(`${filterValue}`.toLowerCase()))
       const processedOptions = filtered.length > 0 && filterActive ? filtered : options
       return show ? (
-        <Styles.DropdownWrapper ref={dropDownRef}>
+        <DropdownWrapper ref={dropDownRef}>
           {processedOptions.map((option: string, index: number) => (
-            <Styles.DropdownOption
+            <DropdownOption
               data-option={option}
               key={index}
             >
@@ -87,24 +87,24 @@ export const InputSelect = <T extends {}> ({
                 onClick={() => handleClick(option)}
                 {...rest}
               />
-            </Styles.DropdownOption>
+            </DropdownOption>
           ))}
-        </Styles.DropdownWrapper>
+        </DropdownWrapper>
       ) : null
   }
 
   return (
-    <Styles.InputSelectWrapper>
-      <Styles.NumberFormatWrapper
+    <InputSelectWrapper>
+      <NumberFormatWrapper
         type="text"
         value={inputValue}
         onValueChange={handleChange}
         onBlur={handleBlur}
         {...rest}
       />
-      <Styles.DropdownArrowWrapper onClick={handleArrowClick}>
+      <DropdownArrowWrapper onClick={handleArrowClick}>
         <InputArrowDown />
-      </Styles.DropdownArrowWrapper>
+      </DropdownArrowWrapper>
       <DropDownOptions
         filterActive={filterActive}
         show={showDropdown}
@@ -112,6 +112,6 @@ export const InputSelect = <T extends {}> ({
         filterValue={inputValue}
         {...rest}
       />
-    </Styles.InputSelectWrapper>
+    </InputSelectWrapper>
   )
 }
