@@ -1,9 +1,9 @@
-import React, { useState, useRef, SyntheticEvent, useEffect } from 'react'
+import React, { useState, useRef, SyntheticEvent } from 'react'
 import { PayappsUI } from '../../typings';
 import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
 import { InputArrowDown } from './InputArrowDown'
-import  * as Styles from './styles'
+import * as Styles from './styles'
 
 type DropDownOptionsProps<T> =
   & PayappsUI.InputSelectProps<T>
@@ -65,26 +65,32 @@ export const InputSelect = <T extends {}> ({
     setShowDropdown(false)
   }
 
-  const DropDownOptions = <T extends {}>({ show, options, filterValue, filterActive, ...rest }: DropDownOptionsProps<T>) => {
-    const filtered = options.filter((option: string) => option.includes(`${filterValue}`.toLowerCase()))
-    const processedOptions = filtered.length > 0 && filterActive ? filtered : options
-    return show ? (
-      <Styles.DropdownWrapper ref={dropDownRef}>
-        {processedOptions.map((option: string, index: number) => (
-          <Styles.DropdownOption
-            data-option={option}
-            key={index}
-          >
-            <NumberFormat
-              displayType='text'
-              value={option}
-              onClick={() => handleClick(option)}
-              {...rest}
-            />
-          </Styles.DropdownOption>
-        ))}
-      </Styles.DropdownWrapper>
-    ) : null
+  const DropDownOptions = <T extends {}>({
+    show,
+    options,
+    filterValue,
+    filterActive,
+    ...rest
+    }: DropDownOptionsProps<T>) => {
+      const filtered = options.filter((option: string) => option.includes(`${filterValue}`.toLowerCase()))
+      const processedOptions = filtered.length > 0 && filterActive ? filtered : options
+      return show ? (
+        <Styles.DropdownWrapper ref={dropDownRef}>
+          {processedOptions.map((option: string, index: number) => (
+            <Styles.DropdownOption
+              data-option={option}
+              key={index}
+            >
+              <NumberFormat
+                displayType='text'
+                value={option}
+                onClick={() => handleClick(option)}
+                {...rest}
+              />
+            </Styles.DropdownOption>
+          ))}
+        </Styles.DropdownWrapper>
+      ) : null
   }
 
   return (
