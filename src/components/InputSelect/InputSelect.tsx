@@ -1,4 +1,4 @@
-import React, { useState, useRef, SyntheticEvent } from 'react'
+import React, { useState, useRef, SyntheticEvent, useEffect } from 'react'
 import { PayappsUI } from '../../typings';
 import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
@@ -24,9 +24,14 @@ export const InputSelect = <T extends {}> ({
   const [optionsArray, setOptionsArray] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
+  // const [changeViaKeyboard, setChangeViaKeyboard] = useState(false)
   const dropDownRef = useRef(null)
 
-  const removeOldestCustomOption = (optionsArr) => {
+  // useEffect(() => {
+
+  //   return () => console.log('cleanup');
+  // }, [])
+  const removeOldestCustomOption = (optionsArr: string[]) => {
     return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr
   }
 
@@ -92,6 +97,8 @@ export const InputSelect = <T extends {}> ({
         </DropdownWrapper>
       ) : null
   }
+
+  let count = 0
 
   return (
     <InputSelectWrapper>
