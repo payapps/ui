@@ -26,6 +26,11 @@ declare module 'styled-components' {
       errorRed: FromColorIndex
       gold: FromColorIndex
       goldAlpha: FromColorIndex
+    },
+    legacy: {
+      colors: {
+        gray: FromColorIndex
+      }
     }
     size: (...val: any[]) => string
   }

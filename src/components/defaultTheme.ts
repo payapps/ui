@@ -36,6 +36,11 @@ export const defaultTheme: DefaultTheme = {
     errorRed: {
       900: '#FF354E',
       100: '#FEF7F8',
+    },
+  },
+  legacy: {
+    colors: {
+      gray: '#EDEDED',
     }
   },
   size: (...value: any) =>

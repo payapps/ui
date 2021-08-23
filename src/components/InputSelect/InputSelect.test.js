@@ -1,83 +1,99 @@
-const stub = [
-  '20%',
-  '5%',
-  '0%'
-]
+import { render, screen, fireEvent, within } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect';
+import { InputSelect } from './InputSelect'
 
-const isValidInput = value => value == null || isNaN(parseInt(value))
-
-const filterIn = (arr) => (value) => {
-  const filtered = arr.filter(rate => rate.includes(`${value}`.toLowerCase()))
-  return isValidInput(value) || filtered.length === 0 ? arr : filtered
+const setup = (props = {}) => {
+  const initProps = {
+    options: ['20', '5', '0'],
+    value: '5',
+    suffix: '%',
+    ...props
+  }
+  const utils = render(
+    <InputSelect {...initProps} />
+  )
+  const input = utils.getByLabelText('input-select')
+  return {
+    input,
+    ...utils
+  }
 }
 
-const filterRate = filterIn(stub)
-
-const removeOldestCustomRate = (initial) => (rates) => {
-  return [...initial, ...rates.slice(stub.length + 1)]
+const getDropDown = () => {
+  const dropdown = screen.getByRole('listbox')
+  const { getAllByRole } = within(dropdown)
+  const items = getAllByRole("listitem")
+  const listValues = items.map(item => item.textContent)
+  return {
+    dropdown,
+    listItems: items,
+    listItemValues: listValues
+  }
 }
 
-const addUniqueRate = (initial) => (rate) => {
-  return [...new Set([...initial, rate])]
-}
-
-const addRate = addUniqueRate(stub)
-const removeRate = removeOldestCustomRate(stub)
-
-test('filterIn should return function', async () => {
-  expect(typeof filterRate).toEqual('function')
+test('Shows initial value', () => {
+  const { input } = setup()
+  expect(input.value).toBe('5%')
 })
 
-test('filterRate should handle falsy input', async () => {
-  const a = filterRate(null)
-  expect(a).toEqual(stub)
-  const b = filterRate(undefined)
-  expect(b).toEqual(stub)
-  const c = filterRate(false)
-  expect(c).toEqual(stub)
-  const d = filterRate('')
-  expect(d).toEqual(stub)
+test('Shows percentage as suffix to input', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '23' } })
+  expect(input.value).toBe('23%')
 })
 
-test('filterRate should handle number input', async () => {
-  const a = filterRate(0)
-  expect(a).toEqual(['20%', '0%'])
-  const b = filterRate(5)
-  expect(b).toEqual(['5%'])
+test('Shows dropdown on input change', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '30' } })
+  const { dropdown } = getDropDown()
+  expect(dropdown).toBeInTheDocument()
 })
 
-test('Should return unfiltered array for unmatched value', async () => {
-  const a = filterRate(60)
-  expect(a).toEqual(['20%', '5%', '0%'])
+test('Shows all initial values in dropdown', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '30' } })
+  const { listItems, listItemValues } = getDropDown()
+  expect(listItems.length).toBe(3)
+  expect(listItemValues).toEqual(['20%', '5%', '0%'])
 })
 
-test('addUniqueRate should return a function', async () => {
-  const a = addUniqueRate({ a: 1 })
-  expect(typeof a).toEqual('function')
+test('Can select value from drop down', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '30' } })
+  fireEvent.click(screen.getByText('5%'))
+  expect(input.value).toBe('5%')
 })
 
-test('Should add new rate', async () => {
-  const rates = addRate('2%')
-  expect(rates).toEqual([
-    '20%',
-    '5%',
-    '0%',
-    '2%'
-  ])
+test('Input change filters drop down', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '20' } })
+  const { listItems } = getDropDown()
+  expect(listItems.length).toBe(1)
+  expect(listItems[0].textContent).toBe('20%')
 })
 
-test('Should omit duplicate rate', async () => {
-  const rates = addRate('5%')
-  expect(rates).toEqual([
-    '20%',
-    '5%',
-    '0%',
-  ])
+test('Input of unique value adds to drop down for later use', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '20.10' } })
+  fireEvent.click(document.body)
+  const button = screen.getByRole('button')
+  fireEvent.click(button)
+  const { listItems, listItemValues } = getDropDown()
+  expect(listItems.length).toBe(4)
+  expect(listItemValues).toEqual(['20%', '5%', '0%', '20.10%'])
 })
 
-test('Should remove oldest custom value from array', async () => {
-  const rates = ['20%', '5%', '0%', '6%', '15%', '17%']
-  const pruned = removeRate(rates)
-  expect(pruned.length).toEqual(5)
-  expect(pruned).toEqual(['20%', '5%', '0%', '15%', '17%'])
+test('Oldest custom value purged when drop down length greater than 5', () => {
+  const { input } = setup()
+  fireEvent.change(input, { target: { value: '20.10' } })
+  fireEvent.click(document.body)
+  fireEvent.change(input, { target: { value: '20.20' } })
+  fireEvent.click(document.body)
+  fireEvent.change(input, { target: { value: '20.30' } })
+  fireEvent.click(document.body)
+  const button = screen.getByRole('button')
+  fireEvent.click(button)
+  const { listItemValues, listItems } = getDropDown()
+  expect(listItems.length).toBe(5)
+  expect(listItemValues).toEqual(['20%', '5%', '0%', '20.20%', '20.30%'])
 })

@@ -1,5 +1,5 @@
 import React, { useState, useRef, SyntheticEvent, useEffect } from 'react'
-import { PayappsUI } from '../../typings';
+import { PayappsUI } from '../types';
 import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
 import { InputArrowDown } from './InputArrowDown'
@@ -18,19 +18,16 @@ export const InputSelect = <T extends {}> ({
   options,
   value = '',
   maxDisplayLength = 5,
+  name='inputselect',
+  ariaLabel='input-select',
   ...rest
 }: PayappsUI.InputSelectProps<T>) => {
   const [inputValue, setInputValue] = useState(`${value}`)
   const [optionsArray, setOptionsArray] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
-  // const [changeViaKeyboard, setChangeViaKeyboard] = useState(false)
   const dropDownRef = useRef(null)
 
-  // useEffect(() => {
-
-  //   return () => console.log('cleanup');
-  // }, [])
   const removeOldestCustomOption = (optionsArr: string[]) => {
     return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr
   }
@@ -80,7 +77,7 @@ export const InputSelect = <T extends {}> ({
       const filtered = options.filter((option: string) => option.includes(`${filterValue}`.toLowerCase()))
       const processedOptions = filtered.length > 0 && filterActive ? filtered : options
       return show ? (
-        <DropdownWrapper ref={dropDownRef}>
+        <DropdownWrapper ref={dropDownRef} role='listbox'>
           {processedOptions.map((option: string, index: number) => (
             <DropdownOption
               data-option={option}
@@ -90,6 +87,7 @@ export const InputSelect = <T extends {}> ({
                 displayType='text'
                 value={option}
                 onClick={() => handleClick(option)}
+                role='option'
                 {...rest}
               />
             </DropdownOption>
@@ -98,18 +96,18 @@ export const InputSelect = <T extends {}> ({
       ) : null
   }
 
-  let count = 0
-
   return (
     <InputSelectWrapper>
       <NumberFormatWrapper
         type="text"
+        name={name}
         value={inputValue}
         onValueChange={handleChange}
         onBlur={handleBlur}
+        aria-label={ariaLabel}
         {...rest}
       />
-      <DropdownArrowWrapper onClick={handleArrowClick}>
+      <DropdownArrowWrapper role='button' onClick={handleArrowClick}>
         <InputArrowDown />
       </DropdownArrowWrapper>
       <DropDownOptions

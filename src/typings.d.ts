@@ -17,13 +17,3 @@ declare module '*.svg' {
   export default svgUrl;
   export { svgComponent as ReactComponent }
 }
-
-namespace PayappsUI {
-  export type InputSelectProps<T> =
-    & NumberFormatPropsBase
-    & T
-    & {
-      options: string[]
-      maxDisplayLength?: number
-    }
-}

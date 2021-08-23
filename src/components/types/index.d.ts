@@ -7,5 +7,6 @@ namespace PayappsUI {
     & {
       options: string[]
       maxDisplayLength?: number
+      ariaLabel?: string
     }
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ThemeProvider, Button, WarningPopover, InfoPopover, Checkbox, InputSelect } from 'ui'
+import { ThemeProvider, Button, WarningPopover, InfoPopover, Checkbox, PercentageInputSelect } from 'ui'
 
 const App = () => {
   const [loading, setLoading] = useState(false)
@@ -27,7 +27,7 @@ const App = () => {
           </WarningPopover>
           <InfoPopover>Here's some info for you</InfoPopover>
           <Checkbox defaultIsChecked>Checkbox</Checkbox>
-          <InputSelect
+          <PercentageInputSelect
             options={['20', '5', '0']}
             value="12"
             suffix="%"

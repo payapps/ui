@@ -28,7 +28,7 @@
     "dpp": "npm version patch && npm run build-storybook && gh-pages -d storybook-static && npm publish"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -37,16 +37,15 @@
     "@storybook/addon-links": "^6.3.7",
     "@storybook/react": "^6.3.7",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
+    "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.1.9",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^15.14.2",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.1",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.2",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
@@ -71,8 +70,8 @@
     "dist"
   ],
   "dependencies": {
-    "@chakra-ui/react": "^1.6.5",
-    "@emotion/react": "^11.4.0",
+    "@chakra-ui/react": "^1.6.6",
+    "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
