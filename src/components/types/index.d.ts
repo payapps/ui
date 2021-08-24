@@ -8,5 +8,6 @@ namespace PayappsUI {
       options: string[]
       maxDisplayLength?: number
       ariaLabel?: string
+      onBlur?: (args: { value: string }) => void
     }
 }

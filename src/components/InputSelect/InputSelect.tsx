@@ -1,4 +1,4 @@
-import React, { useState, useRef, SyntheticEvent, useEffect } from 'react'
+import React, { useState, useRef, SyntheticEvent } from 'react'
 import { PayappsUI } from '../types';
 import NumberFormat from 'react-number-format';
 import { useClickOutside, useEscapeKey } from '../hooks'
@@ -18,8 +18,9 @@ export const InputSelect = <T extends {}> ({
   options,
   value = '',
   maxDisplayLength = 5,
-  name='inputselect',
-  ariaLabel='input-select',
+  name = 'inputselect',
+  ariaLabel = 'input-select',
+  onBlur,
   ...rest
 }: PayappsUI.InputSelectProps<T>) => {
   const [inputValue, setInputValue] = useState(`${value}`)
@@ -42,9 +43,10 @@ export const InputSelect = <T extends {}> ({
     setInputValue(value)
   }
 
-  const handleBlur = ({ target }) => {
-    const { value } = target
-    // setValueFunc in here probs
+  const handleBlur = () => {
+    if (onBlur) {
+      onBlur({ value: inputValue })
+    }
   }
 
   const closeDropDown = () => {

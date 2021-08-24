@@ -13,10 +13,13 @@ const setup = (props) => {
   }
 }
 
+const onBlur = jest.fn()
+
 const initProps = {
   options: ['20', '5', '0'],
   value: '5',
   suffix: '%',
+  onBlur,
 }
 
 const currencyProps = {
@@ -107,6 +110,13 @@ test('Oldest custom value purged when drop down length greater than 5', () => {
   const { listItemValues, listItems } = getDropDown()
   expect(listItems.length).toBe(5)
   expect(listItemValues).toEqual(['20%', '5%', '0%', '20.20%', '20.30%'])
+})
+
+test('Passed callbacks will be called', () => {
+  const { input } = setup(initProps)
+  fireEvent.change(input, { target: { value: '15' } })
+  fireEvent.blur(input, { value: input.value })
+  expect(onBlur).toHaveBeenCalledWith({ value: '15' })
 })
 
 test('Will format currency values', () => {
