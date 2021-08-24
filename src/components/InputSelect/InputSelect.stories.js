@@ -18,5 +18,17 @@ Input.args = {
   suffix: '%'
 };
 
+export const CurrencyInputSelect = Template.bind({});
+CurrencyInputSelect.args = {
+  decimalScale: 2,
+  thousandSeparator: ',',
+  allowNegative: true,
+  prefix: '$',
+  suffix: undefined,
+  options: ['1000', '2000', '3000'],
+  value: '1000',
+  fixedDecimalScale: 2,
+};
+
 export default config
 

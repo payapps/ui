@@ -2,21 +2,32 @@ import { render, screen, fireEvent, within } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import { InputSelect } from './InputSelect'
 
-const setup = (props = {}) => {
-  const initProps = {
-    options: ['20', '5', '0'],
-    value: '5',
-    suffix: '%',
-    ...props
-  }
+const setup = (props) => {
   const utils = render(
-    <InputSelect {...initProps} />
+    <InputSelect {...props} />
   )
   const input = utils.getByLabelText('input-select')
   return {
     input,
     ...utils
   }
+}
+
+const initProps = {
+  options: ['20', '5', '0'],
+  value: '5',
+  suffix: '%',
+}
+
+const currencyProps = {
+  decimalScale: 2,
+  thousandSeparator: ',',
+  allowNegative: true,
+  prefix: '$',
+  suffix: undefined,
+  options: ['1000', '2000', '3000'],
+  value: '1000',
+  fixedDecimalScale: 2,
 }
 
 const getDropDown = () => {
@@ -32,25 +43,25 @@ const getDropDown = () => {
 }
 
 test('Shows initial value', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   expect(input.value).toBe('5%')
 })
 
 test('Shows percentage as suffix to input', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '23' } })
   expect(input.value).toBe('23%')
 })
 
 test('Shows dropdown on input change', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '30' } })
   const { dropdown } = getDropDown()
   expect(dropdown).toBeInTheDocument()
 })
 
 test('Shows all initial values in dropdown', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '30' } })
   const { listItems, listItemValues } = getDropDown()
   expect(listItems.length).toBe(3)
@@ -58,14 +69,14 @@ test('Shows all initial values in dropdown', () => {
 })
 
 test('Can select value from drop down', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '30' } })
   fireEvent.click(screen.getByText('5%'))
   expect(input.value).toBe('5%')
 })
 
 test('Input change filters drop down', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '20' } })
   const { listItems } = getDropDown()
   expect(listItems.length).toBe(1)
@@ -73,7 +84,7 @@ test('Input change filters drop down', () => {
 })
 
 test('Input of unique value adds to drop down for later use', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '20.10' } })
   fireEvent.click(document.body)
   const button = screen.getByRole('button')
@@ -84,7 +95,7 @@ test('Input of unique value adds to drop down for later use', () => {
 })
 
 test('Oldest custom value purged when drop down length greater than 5', () => {
-  const { input } = setup()
+  const { input } = setup(initProps)
   fireEvent.change(input, { target: { value: '20.10' } })
   fireEvent.click(document.body)
   fireEvent.change(input, { target: { value: '20.20' } })
@@ -96,4 +107,9 @@ test('Oldest custom value purged when drop down length greater than 5', () => {
   const { listItemValues, listItems } = getDropDown()
   expect(listItems.length).toBe(5)
   expect(listItemValues).toEqual(['20%', '5%', '0%', '20.20%', '20.30%'])
+})
+
+test('Will format currency values', () => {
+  const { input } = setup(currencyProps)
+  expect(input.value).toBe('$1,000.00')
 })
