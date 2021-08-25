@@ -8,7 +8,7 @@ import packageJson from "./package.json";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  input: "./src/index.ts",
+  input: "./src/components/index.ts",
   output: [
     {
       file: packageJson.main,
