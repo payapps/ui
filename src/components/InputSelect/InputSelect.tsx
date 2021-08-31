@@ -29,13 +29,14 @@ export const InputSelect = <T extends {}> ({
   const [optionsArray, setOptionsArray] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
-  const [changeFromDropDown, setChangeFromDropDown] = useState(false)
+  const [externalChange, setExternalChange] = useState(false)
   const dropDownRef = useRef(null)
 
   const displayType = inputDisabled ? 'text' : 'input'
   const aria = `${ariaLabel}-${displayType}`
 
   useEffect(() => {
+    setExternalChange(true)
     setInputValue(`${value}`)
   }, [value])
 
@@ -48,12 +49,13 @@ export const InputSelect = <T extends {}> ({
   const handleUniqueOptionAddition = (value: string) => setOptionsArray(addUniqueOption(value))
 
   const handleChange = ({ value }) => {
-    if (!changeFromDropDown) {
+    console.log('change?');
+    if (!externalChange) {
       setFilterActive(true)
       setShowDropdown(true)
       setInputValue(value)
     }
-    setChangeFromDropDown(false)
+    setExternalChange(false)
   }
 
   const handleBlur = () => {
@@ -79,7 +81,7 @@ export const InputSelect = <T extends {}> ({
   const handleClick = (option: string) => {
     setShowDropdown(false)
     setInputValue(option)
-    setChangeFromDropDown(true)
+    setExternalChange(true)
     onSelect({ value: option })
   }
 
