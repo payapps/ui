@@ -7,7 +7,8 @@ export const InputSelectWrapper = styled.div`
   display: inline-grid;
   grid-template-columns: 1fr 24px;
   grid-auto-columns: 1fr;
-  border: solid #EDEDED 1px;
+  // border: solid #EDEDED 1px;
+  border: solid red 1px;
   background-color: #FFF;
   color: #8A8A8A;
   font-size: 12px;
