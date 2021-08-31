@@ -32,7 +32,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static",
-    "dpp": "npm version patch && npm run build-storybook && gh-pages -d storybook-static && npm publish"
+    "dpp": "npm run build && npm version patch && npm run build-storybook && gh-pages -d storybook-static && npm publish"
   },
   "eslintConfig": {
     "extends": [
