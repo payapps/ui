@@ -4,6 +4,7 @@ import NumberFormat from 'react-number-format'
 import { useClickOutside, useEscapeKey } from '../hooks'
 import { InputArrowDown } from './InputArrowDown'
 import { DropdownOption, DropdownArrowWrapper, DropdownWrapper, InputSelectWrapper, NumberFormatWrapper } from './styles'
+import { useEffect } from 'react'
 
 type DropDownOptionsProps<T> =
   & PayappsUI.InputSelectProps<T>
@@ -28,10 +29,15 @@ export const InputSelect = <T extends {}> ({
   const [optionsArray, setOptionsArray] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
+  const [changeFromDropDown, setChangeFromDropDown] = useState(false)
   const dropDownRef = useRef(null)
 
   const displayType = inputDisabled ? 'text' : 'input'
   const aria = `${ariaLabel}-${displayType}`
+
+  useEffect(() => {
+    setInputValue(`${value}`)
+  }, [value])
 
   const removeOldestCustomOption = (optionsArr: string[]) => {
     return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr
@@ -42,9 +48,12 @@ export const InputSelect = <T extends {}> ({
   const handleUniqueOptionAddition = (value: string) => setOptionsArray(addUniqueOption(value))
 
   const handleChange = ({ value }) => {
-    setFilterActive(true)
-    setShowDropdown(true)
-    setInputValue(value)
+    if (!changeFromDropDown) {
+      setFilterActive(true)
+      setShowDropdown(true)
+      setInputValue(value)
+    }
+    setChangeFromDropDown(false)
   }
 
   const handleBlur = () => {
@@ -68,8 +77,9 @@ export const InputSelect = <T extends {}> ({
   useClickOutside(dropDownRef, closeDropDown)
 
   const handleClick = (option: string) => {
-    setInputValue(option)
     setShowDropdown(false)
+    setInputValue(option)
+    setChangeFromDropDown(true)
     onSelect({ value: option })
   }
 

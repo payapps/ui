@@ -3,10 +3,12 @@ import NumberFormat from 'react-number-format'
 
 export const InputSelectWrapper = styled.div`
   position: relative;
+  width: 100%;
   display: inline-grid;
   grid-template-columns: 1fr 24px;
   grid-auto-columns: 1fr;
   border: solid #EDEDED 1px;
+  background-color: #FFF;
   color: #8A8A8A;
   font-size: 12px;
   line-height: 2;
@@ -25,6 +27,9 @@ export const DropdownArrowWrapper = styled.div`
 export const NumberFormatWrapper = styled(NumberFormat)`
   appearance: none;
   padding: 8px;
+  width: 100%;
+  height: 100%;
+  border: none;
   background-color: transparent;
   &:focus {
     outline: none;
@@ -49,6 +54,7 @@ export const DropdownOption = styled.li`
   padding: 8px;
   cursor: pointer;
   transition: background-color 0.35s;
+  font-size: 12px;
   &:hover {
     background-color: rgba(0, 0, 0, 0.02);
   }
