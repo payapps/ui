@@ -8,12 +8,14 @@ export const InputSelectWrapper = styled.div`
   grid-template-columns: 1fr 24px;
   grid-auto-columns: 1fr;
   border: solid #EDEDED 1px;
-  // border: solid red 1px;
   background-color: #FFF;
   color: #8A8A8A;
   font-size: 12px;
   line-height: 2;
   z-index: 1;
+  &[aria-disabled="true"] * {
+    cursor: not-allowed;
+  }
 `
 
 export const DropdownArrowWrapper = styled.div`

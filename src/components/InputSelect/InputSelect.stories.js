@@ -16,7 +16,8 @@ Input.args = {
   options: ['20', '5', '0'],
   value: '5',
   suffix: '%',
-  onSelect: ({ value }) => { console.log('value', value) }
+  onSelect: ({ value }) => { console.log('value', value) },
+  disabled: false,
 }
 
 export const CurrencyInputSelect = Template.bind({})

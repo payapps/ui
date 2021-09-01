@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent, within } from '@testing-library/react'
+import { render, screen, fireEvent, within, getByRole } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import { InputSelect } from './InputSelect'
 
@@ -152,4 +152,9 @@ test('Selecting from dropdown with input disabled calls callback', () => {
 test('Will format currency values', () => {
   const { input } = setup(currencyProps)
   expect(input.value).toBe('$1,000.00')
+})
+
+test('Can disable input and drop down', () => {
+  const { input } = setup({ ...initProps, disabled: true })
+  expect(input.disabled).toBe(true)
 })

@@ -22,6 +22,7 @@ export const InputSelect = <T extends {}> ({
   name = 'inputselect',
   ariaLabel = 'input-select',
   inputDisabled = false,
+  disabled = false,
   onSelect = () => undefined,
   ...rest
 }: PayappsUI.InputSelectProps<T>) => {
@@ -36,9 +37,8 @@ export const InputSelect = <T extends {}> ({
   const aria = `${ariaLabel}-${displayType}`
 
   useEffect(() => {
-    setExternalChange(true)
-    setInputValue(`${value}`)
-  }, [value])
+    setOptionsArray(options)
+  }, [options])
 
   const removeOldestCustomOption = (optionsArr: string[]) => {
     return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr
@@ -49,7 +49,6 @@ export const InputSelect = <T extends {}> ({
   const handleUniqueOptionAddition = (value: string) => setOptionsArray(addUniqueOption(value))
 
   const handleChange = ({ value }) => {
-    console.log('change?');
     if (!externalChange) {
       setFilterActive(true)
       setShowDropdown(true)
@@ -118,7 +117,7 @@ export const InputSelect = <T extends {}> ({
   }
 
   return (
-    <InputSelectWrapper>
+    <InputSelectWrapper aria-disabled={disabled}>
       <NumberFormatWrapper
         type="text"
         name={name}
@@ -127,14 +126,16 @@ export const InputSelect = <T extends {}> ({
         onBlur={handleBlur}
         displayType={displayType}
         aria-label={aria}
+        disabled={disabled}
         {...rest}
+        {...(displayType === 'text' ? { onClick: handleArrowClick } : {})}
       />
       <DropdownArrowWrapper role='button' onClick={handleArrowClick}>
         <InputArrowDown />
       </DropdownArrowWrapper>
       <DropDownOptions
         filterActive={filterActive}
-        show={showDropdown}
+        show={showDropdown && !disabled}
         options={optionsArray}
         filterValue={inputValue}
         {...rest}
