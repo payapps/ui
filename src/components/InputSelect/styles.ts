@@ -28,11 +28,16 @@ export const DropdownArrowWrapper = styled.div`
 `
 
 export const NumberFormatWrapper = styled(NumberFormat)`
+  // appearance: none;
   padding: 8px;
+  display: flex;
+  align-content: center;
   width: 100%;
   height: 100%;
+  min-height: 30px;
   border: none;
-  line-height: 14px;
+  line-height: 1;
+  // border: solid red 1px;
   background-color: transparent;
   &:focus {
     outline: none;

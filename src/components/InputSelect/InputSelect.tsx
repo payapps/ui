@@ -26,7 +26,7 @@ export const InputSelect = <T extends {}> ({
   onSelect = () => undefined,
   ...rest
 }: PayappsUI.InputSelectProps<T>) => {
-  const [inputValue, setInputValue] = useState(`${value}`)
+  const [inputValue, setInputValue] = useState('')
   const [optionsArray, setOptionsArray] = useState(options)
   const [showDropdown, setShowDropdown] = useState(false)
   const [filterActive, setFilterActive] = useState(false)
@@ -38,7 +38,10 @@ export const InputSelect = <T extends {}> ({
 
   useEffect(() => {
     setOptionsArray(options)
-  }, [options])
+    setExternalChange(true)
+    setInputValue(`${value}`)
+
+  }, [options, value])
 
   const removeOldestCustomOption = (optionsArr: string[]) => {
     return optionsArr.length >= maxDisplayLength + 1 ? [...options, ...optionsArr.slice(options.length + 1)] : optionsArr

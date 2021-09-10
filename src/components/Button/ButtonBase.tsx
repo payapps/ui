@@ -27,8 +27,8 @@ export const ButtonBase = styled.button<{
   fontSize?: string | null;
 }>`
   &[disabled] {
-    background-color: ${props => props.theme.colors.xtraLightGrey};
-    color: ${props => props.theme.colors.lightGrey};
+    background-color: ${props => props.theme.legacy.colors.xtraLightGrey};
+    color: ${props => props.theme.legacy.colors.lightGrey};
     border: 1px solid rgba(182, 197, 206, 0.5);
     pointer-events: none;
   }
@@ -52,8 +52,8 @@ export const ButtonBase = styled.button<{
       `
         && {
           border: solid transparent 1px;
-          background-color: ${props.theme.colors[statusBGColor]};
-          color: ${props.theme.colors.white};
+          background-color: ${props.theme.legacy.colors[statusBGColor]};
+          color: ${props.theme.legacy.colors.white};
           &:before {
             opacity: ${opacity};
           }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { PayappsUI } from '../types'
 import { InputSelect } from '../InputSelect'
 
