@@ -31,8 +31,20 @@ declare module 'styled-components' {
       },
     },
     colors: {
-      gold: FromColorIndex,
+      gold: FromColorIndex
       goldAlpha: FromColorIndex
+      aqua: FromColorIndex
+      aquaAlpha: FromColorIndex
+      purple: FromColorIndex
+      purpleAlpha: FromColorIndex
+      green: FromColorIndex
+      greenAlpha: FromColorIndex
+      orange: FromColorIndex
+      orangeAlpha: FromColorIndex
+      red: FromColorIndex
+      redAlpha: FromColorIndex
+      blue: FromColorIndex
+      blueAlpha: FromColorIndex
     }
   size: (...val: any[]) => string
   }
