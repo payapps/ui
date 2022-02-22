@@ -11,7 +11,7 @@ interface Props {
 export const ThemeProvider = ({ children }: Props) => {
   // Legacy theme override to prevent Chakra's defaults from interfering with existing bootstrap, material and custom styles
   // Removing this will give me great joy.
-  const legacyTheme = extendTheme({
+  const theme = {
     styles: {
       global: {
         body: {
@@ -23,12 +23,14 @@ export const ThemeProvider = ({ children }: Props) => {
         }
       }
     },
-    // this will get a refactor to conform with the Styled System Theme Spec
     ...defaultTheme
-  })
+  }
+
+  const legacyTheme = extendTheme({ ...theme })
+
   return (
     <ChakraProvider theme={legacyTheme}>
-      <StyledThemeProvider theme={legacyTheme}>
+      <StyledThemeProvider theme={theme}>
         {children}
       </StyledThemeProvider>
     </ChakraProvider>
