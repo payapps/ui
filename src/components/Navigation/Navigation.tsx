@@ -8,6 +8,7 @@ export const Navigation = (props) => {
       bgColor='#005681'
       color='#FFF'
       gridTemplateColumns='1fr 1fr'
+      fontSize={16}
     >
       <GridItem
         padding={16}
